@@ -45,8 +45,23 @@ environment {
 
         stage('Deploy to EKS') {
             steps {
-                script {
-                    sh 'kubectl apply -f k8s/flask-app.yaml'
+                 withCredentials([[
+                    $class: 'AmazonWebServicesCredentialsBinding',
+                    credentialsId: 'aws-credentials'
+                ]]) {
+                    script {
+                        sh '''
+                            aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+                            aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+                            aws configure set default.region $AWS_REGION
+        
+                            # Update kubeconfig for EKS
+                            aws eks update-kubeconfig --region $AWS_REGION --name <your-cluster-name>
+        
+                            # Deploy application
+                            kubectl apply -f k8s/flask-app.yaml
+                        '''
+                    }
                 }
             }
         }
