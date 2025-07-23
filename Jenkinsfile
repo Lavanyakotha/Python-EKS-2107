@@ -1,12 +1,17 @@
 pipeline {
     agent any
 
+environment {
+        AWS_REGION = 'us-east-1'
+        ECR_REPO = '076194731919.dkr.ecr.us-east-1.amazonaws.com/flask-app'
+        IMAGE_TAG = "latest"
+    }
     
 
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/lavanyakotha/python-eks-2017.git',
+                git url: 'https://github.com/lavanyakotha/python-eks-2017.git',
                      credentialsId: 'github-credentials',
                      branch: 'main'
             }
