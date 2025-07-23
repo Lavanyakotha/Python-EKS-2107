@@ -7,6 +7,8 @@ pipeline {
         stage('Checkout') {
             steps {
                 git 'https://github.com/lavanyakotha/python-eks-2017.git'
+                     credentialsId: 'github-credentials',
+                     branch: 'main'
             }
         }
 
