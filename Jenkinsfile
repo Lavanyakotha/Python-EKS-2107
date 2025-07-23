@@ -11,7 +11,7 @@ environment {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/lavanyakotha/python-eks-2017.git',
+                git url: 'https://github.com/Lavanyakotha/Python-EKS-2107.git',
                      credentialsId: 'github-credentials',
                      branch: 'main'
             }
