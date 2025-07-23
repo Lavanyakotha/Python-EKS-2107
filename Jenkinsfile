@@ -46,7 +46,7 @@ environment {
         stage('Deploy to EKS') {
             steps {
                 script {
-                    sh 'kubectl apply -f deployment.yaml'
+                    sh 'kubectl apply -f k8s/flask-app.yaml'
                 }
             }
         }
