@@ -51,7 +51,7 @@ environment {
                         aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
                         aws configure set default.region us-east-1
                         
-                        aws eks update-kubeconfig --region us-east-1 --name earnest-dolphin-5tz64i
+                        aws eks update-kubeconfig --region us-east-1 --name flask-app-cluster
                         kubectl apply -f k8s/flask-app.yaml
                     '''
                 }
